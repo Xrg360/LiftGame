@@ -25,6 +25,8 @@ SPACING = 20  # Spacing between components
 cap = cv2.VideoCapture(0)
 selected_floor = -1
 val =0
+level = 1
+score = 0 
 
 
 # Load images
@@ -74,6 +76,11 @@ correct_floor_text = big_font.render(str(current_floor), True, (255, 255, 255))
 timer_started = False
 start_time = 0
 duration = 5
+def update_level():
+    global level, score, num_floors
+    if score % 4 == 0:  # Increase level every 4 points
+        level += 1
+        num_floors = level
 
 def findPose():
     ret, frame = cap.read()
